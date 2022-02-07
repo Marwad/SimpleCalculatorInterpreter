@@ -1,0 +1,1939 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LanguageExt.Parsec</name>
+    </assembly>
+    <members>
+        <member name="T:LanguageExt.Parsec.GenLanguageDef">
+            <summary>
+            The GenLanguageDef type is a record that contains all parameteridable
+            features of the "Parsec.Text.Token" module.  The module "Parsec.Text.Language"
+            contains some default definitions.
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenLanguageDef.CommentStart">
+            <summary>
+            Describes the start of a block comment. Use the empty string if the
+            language doesn't support block comments. For example "/*". 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenLanguageDef.CommentEnd">
+            <summary>
+            Describes the end of a block comment. Use the empty string if the
+            language doesn't support block comments. For example "*\". 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenLanguageDef.CommentLine">
+            <summary>
+            Describes the start of a line comment. Use the empty string if the
+            language doesn't support line comments. For example "//". 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenLanguageDef.NestedComments">
+            <summary>
+            Set to 'True' if the language supports nested block comments. 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenLanguageDef.IdentStart">
+            <summary>
+            This parser should accept any start characters of identifiers. For
+            example either(letter,char('_')). 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenLanguageDef.IdentLetter">
+            <summary>
+            This parser should accept any legal tail characters of identifiers.
+            For example either(alphaNum, char('_')). 
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:LanguageExt.Parsec.GenLanguageDef.OpStart" -->
+        <member name="F:LanguageExt.Parsec.GenLanguageDef.OpLetter">
+            <summary>
+            This parser should accept any legal tail characters of operators.
+            Note that this parser should even be defined if the language doesn't
+            support user-defined operators, or otherwise the 'reservedOp'
+            parser won't work correctly. 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenLanguageDef.ReservedNames">
+            <summary>
+            The list of reserved identifiers. 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenLanguageDef.ReservedOpNames">
+            <summary>
+            The list of reserved operators.
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenLanguageDef.CaseSensitive">
+            <summary>
+            Set to 'True' if the language is case sensitive. 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenLanguageDef.Empty">
+            <summary>
+            Empty definition, use With to build
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser.Identifier">
+            <summary>
+            This lexeme parser parses a legal identifier. Returns the identifier
+            string. This parser will fail on identifiers that are reserved
+            words. Legal identifier (start) characters and reserved words are
+            defined in the 'LanguageDef' that is passed to
+            'makeTokenParser'. An identifier is treated as
+            a single token using 'try'.
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser.Reserved">
+            <summary>
+            The lexeme parser reserved(name) parses a symbol 
+            name, but it also checks that the name is not a prefix of a
+            valid identifier. A reserved word is treated as a single token
+            using 'try'. 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser.Operator">
+            <summary>
+            This lexeme parser parses a legal operator. Returns the name of the
+            operator. This parser will fail on any operators that are reserved
+            operators. Legal operator (start) characters and reserved operators
+            are defined in the 'LanguageDef' that is passed to
+            'makeTokenParser'. An operator is treated as a
+            single token using 'try'. 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser.ReservedOp">
+            <summary>
+            The lexeme parser reservedOp name parses symbol
+            name, but it also checks that the name is not a prefix of a
+            valid operator. A reservedOp is treated as a single token using
+            'try'. 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser.CharLiteral">
+            <summary>
+            This lexeme parser parses a single literal character. Returns the
+            literal character value. This parsers deals correctly with escape
+            sequences. The literal character is parsed according to the grammar
+            rules defined in the Haskell report (which matches most programming
+            languages quite closely). 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser.StringLiteral">
+            <summary>
+            This lexeme parser parses a literal string. Returns the literal
+            string value. This parsers deals correctly with escape sequences and
+            gaps. The literal string is parsed according to the grammar rules
+            defined in the Haskell report (which matches most programming
+            languages quite closely). 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser.Natural">
+            <summary>
+            This lexeme parser parses a natural number (a positive whole
+            number). Returns the value of the number. The number can be
+            specified in 'decimal', 'hexadecimal' or
+            'octal'. The number is parsed according to the grammar
+            rules in the Haskell report. 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser.Integer">
+            <summary>
+            This lexeme parser parses an integer (a whole number). This parser
+            is like 'natural' except that it can be prefixed with
+            sign (i.e. \'-\' or \'+\'). Returns the value of the number. The
+            number can be specified in 'decimal', 'hexadecimal'
+            or 'octal'. The number is parsed according
+            to the grammar rules in the Haskell report. 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser.Float">
+            <summary>
+            This lexeme parser parses a floating point value. Returns the value
+            of the number. The number is parsed according to the grammar rules
+            defined in the Haskell report. 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser.NaturalOrFloat">
+            <summary>
+            This lexeme parser parses either 'natural' or a 'float'.
+            Returns the value of the number. This parsers deals with
+            any overlap in the grammar rules for naturals and floats. The number
+            is parsed according to the grammar rules defined in the Haskell report. 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser.Decimal">
+            <summary>
+            Parses a positive whole number in the decimal system. Returns the
+            value of the number. 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser.Hexadecimal">
+            <summary>
+            Parses a positive whole number in the hexadecimal system. The number
+            should be prefixed with "0x" or "0X". Returns the value of the
+            number.
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser.Octal">
+            <summary>
+            Parses a positive whole number in the octal system. The number
+            should be prefixed with "0o" or "0O". Returns the value of the
+            number. 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser.Symbol">
+            <summary>
+            Lexeme parser symbol(s) parses 'string' s and skips
+            trailing white space. 
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.GenTokenParser.Lexeme``1(LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            lexeme(p) first applies parser p and than the 'whiteSpace'
+            parser, returning the value of p. Every lexical
+            token (lexeme) is defined using lexeme, this way every parse
+            starts at a point without white space. Parsers that use lexeme are
+            called lexeme parsers in this document.
+            
+            The only point where the 'whiteSpace' parser should be
+            called explicitly is the start of the main parser in order to skip
+            any leading white space.
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser.WhiteSpace">
+            <summary>
+            Parses any white space. White space consists of /zero/ or more
+            occurrences of a 'space', a line comment or a block (multi
+            line) comment. Block comments may be nested. How comments are
+            started and ended is defined in the 'LanguageDef'
+            that is passed to 'makeTokenParser'. 
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.GenTokenParser.Parens``1(LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            Lexeme parser parens(p) parses p enclosed in parenthesis,
+            returning the value of p.
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.GenTokenParser.Braces``1(LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            Lexeme parser braces(p) parses p enclosed in braces { and
+            }, returning the value of p. 
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:LanguageExt.Parsec.GenTokenParser.Angles``1(LanguageExt.Parsec.Parser{``0})" -->
+        <member name="M:LanguageExt.Parsec.GenTokenParser.Brackets``1(LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            Lexeme parser brackets(p) parses p enclosed in brackets [
+            and ], returning the value of p. 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser.Semi">
+            <summary>
+            Lexeme parser semi parses the character ; and skips any
+            trailing white space. Returns the string ";". 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser.Comma">
+            <summary>
+            Lexeme parser comma parses the character , and skips any
+            trailing white space. Returns the string ",". 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser.Colon">
+            <summary>
+            Lexeme parser colon parses the character : and skips any
+            trailing white space. Returns the string ":". 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser.Dot">
+            <summary>
+            Lexeme parser dot parses the character . and skips any
+            trailing white space. Returns the string ".". 
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.GenTokenParser.SemiSep``1(LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            Lexeme parser semiSep(p) parses /zero/ or more occurrences of p
+            separated by semi. Returns a list of values returned by
+            p.
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.GenTokenParser.SemiSep1``1(LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            Lexeme parser semiSep1(p) parses /one/ or more occurrences of p
+            separated by 'semi'. Returns a list of values returned by p. 
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.GenTokenParser.CommaSep``1(LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            Lexeme parser commaSep(p) parses /zero/ or more occurrences of
+            p separated by 'comma'. Returns a list of values returned
+            by p. 
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.GenTokenParser.CommaSep1``1(LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            Lexeme parser commaSep1(p) parses /one/ or more occurrences of
+            p separated by 'comma'. Returns a list of values returned
+            by p. 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser2.Identifier">
+            <summary>
+            This lexeme parser parses a legal identifier. Returns the identifier
+            string. This parser will fail on identifiers that are reserved
+            words. Legal identifier (start) characters and reserved words are
+            defined in the 'LanguageDef' that is passed to
+            'makeTokenParser'. An identifier is treated as
+            a single token using 'try'.
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser2.Reserved">
+            <summary>
+            The lexeme parser reserved(name) parses a symbol 
+            name, but it also checks that the name is not a prefix of a
+            valid identifier. A reserved word is treated as a single token
+            using 'try'. 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser2.Operator">
+            <summary>
+            This lexeme parser parses a legal operator. Returns the name of the
+            operator. This parser will fail on any operators that are reserved
+            operators. Legal operator (start) characters and reserved operators
+            are defined in the 'LanguageDef' that is passed to
+            'makeTokenParser'. An operator is treated as a
+            single token using 'try'. 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser2.ReservedOp">
+            <summary>
+            The lexeme parser reservedOp name parses symbol
+            name, but it also checks that the name is not a prefix of a
+            valid operator. A reservedOp is treated as a single token using
+            'try'. 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser2.CharLiteral">
+            <summary>
+            This lexeme parser parses a single literal character. Returns the
+            literal character value. This parsers deals correctly with escape
+            sequences. The literal character is parsed according to the grammar
+            rules defined in the Haskell report (which matches most programming
+            languages quite closely). 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser2.StringLiteral">
+            <summary>
+            This lexeme parser parses a literal string. Returns the literal
+            string value. This parsers deals correctly with escape sequences and
+            gaps. The literal string is parsed according to the grammar rules
+            defined in the Haskell report (which matches most programming
+            languages quite closely). 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser2.Natural">
+            <summary>
+            This lexeme parser parses a natural number (a positive whole
+            number). Returns the value of the number. The number can be
+            specified in 'decimal', 'hexadecimal' or
+            'octal'. The number is parsed according to the grammar
+            rules in the Haskell report. 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser2.Integer">
+            <summary>
+            This lexeme parser parses an integer (a whole number). This parser
+            is like 'natural' except that it can be prefixed with
+            sign (i.e. \'-\' or \'+\'). Returns the value of the number. The
+            number can be specified in 'decimal', 'hexadecimal'
+            or 'octal'. The number is parsed according
+            to the grammar rules in the Haskell report. 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser2.Float">
+            <summary>
+            This lexeme parser parses a floating point value. Returns the value
+            of the number. The number is parsed according to the grammar rules
+            defined in the Haskell report. 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser2.NaturalOrFloat">
+            <summary>
+            This lexeme parser parses either 'natural' or a 'float'.
+            Returns the value of the number. This parsers deals with
+            any overlap in the grammar rules for naturals and floats. The number
+            is parsed according to the grammar rules defined in the Haskell report. 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser2.Decimal">
+            <summary>
+            Parses a positive whole number in the decimal system. Returns the
+            value of the number. 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser2.Hexadecimal">
+            <summary>
+            Parses a positive whole number in the hexadecimal system. The number
+            should be prefixed with "0x" or "0X". Returns the value of the
+            number.
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser2.Octal">
+            <summary>
+            Parses a positive whole number in the octal system. The number
+            should be prefixed with "0o" or "0O". Returns the value of the
+            number. 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser2.Symbol">
+            <summary>
+            Lexeme parser symbol(s) parses 'string' s and skips
+            trailing white space. 
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.GenTokenParser2.Lexeme``1(LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            lexeme(p) first applies parser p and than the 'whiteSpace'
+            parser, returning the value of p. Every lexical
+            token (lexeme) is defined using lexeme, this way every parse
+            starts at a point without white space. Parsers that use lexeme are
+            called lexeme parsers in this document.
+            
+            The only point where the 'whiteSpace' parser should be
+            called explicitly is the start of the main parser in order to skip
+            any leading white space.
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser2.WhiteSpace">
+            <summary>
+            Parses any white space. White space consists of /zero/ or more
+            occurrences of a 'space', a line comment or a block (multi
+            line) comment. Block comments may be nested. How comments are
+            started and ended is defined in the 'LanguageDef'
+            that is passed to 'makeTokenParser'. 
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.GenTokenParser2.Parens``1(LanguageExt.Parsec.Parser{System.ValueTuple{``0,LanguageExt.Parsec.Pos,LanguageExt.Parsec.Pos,System.Int32,System.Int32}})">
+            <summary>
+            Lexeme parser parens(p) parses p enclosed in parenthesis,
+            returning the value of p.
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.GenTokenParser2.Braces``1(LanguageExt.Parsec.Parser{System.ValueTuple{``0,LanguageExt.Parsec.Pos,LanguageExt.Parsec.Pos,System.Int32,System.Int32}})">
+            <summary>
+            Lexeme parser braces(p) parses p enclosed in braces { and
+            }, returning the value of p. 
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:LanguageExt.Parsec.GenTokenParser2.Angles``1(LanguageExt.Parsec.Parser{System.ValueTuple{``0,LanguageExt.Parsec.Pos,LanguageExt.Parsec.Pos,System.Int32,System.Int32}})" -->
+        <member name="M:LanguageExt.Parsec.GenTokenParser2.Brackets``1(LanguageExt.Parsec.Parser{System.ValueTuple{``0,LanguageExt.Parsec.Pos,LanguageExt.Parsec.Pos,System.Int32,System.Int32}})">
+            <summary>
+            Lexeme parser brackets(p) parses p enclosed in brackets [
+            and ], returning the value of p. 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser2.Semi">
+            <summary>
+            Lexeme parser semi parses the character ; and skips any
+            trailing white space. Returns the string ";". 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser2.Comma">
+            <summary>
+            Lexeme parser comma parses the character , and skips any
+            trailing white space. Returns the string ",". 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser2.Colon">
+            <summary>
+            Lexeme parser colon parses the character : and skips any
+            trailing white space. Returns the string ":". 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.GenTokenParser2.Dot">
+            <summary>
+            Lexeme parser dot parses the character . and skips any
+            trailing white space. Returns the string ".". 
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.GenTokenParser2.SepBy``2(LanguageExt.Parsec.Parser{System.ValueTuple{``0,LanguageExt.Parsec.Pos,LanguageExt.Parsec.Pos,System.Int32,System.Int32}},LanguageExt.Parsec.Parser{``1})">
+            <summary>
+            Lexeme parser semiSep(p) parses /zero/ or more occurrences of p
+            separated by semi. Returns a list of values returned by
+            p.
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.GenTokenParser2.SepBy1``2(LanguageExt.Parsec.Parser{System.ValueTuple{``0,LanguageExt.Parsec.Pos,LanguageExt.Parsec.Pos,System.Int32,System.Int32}},LanguageExt.Parsec.Parser{``1})">
+            <summary>
+            Lexeme parser semiSep1(p) parses /one/ or more occurrences of p
+            separated by 'semi'. Returns a list of values returned by p. 
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.GenTokenParser2.SemiSep``1(LanguageExt.Parsec.Parser{System.ValueTuple{``0,LanguageExt.Parsec.Pos,LanguageExt.Parsec.Pos,System.Int32,System.Int32}})">
+            <summary>
+            Lexeme parser semiSep(p) parses /zero/ or more occurrences of p
+            separated by semi. Returns a list of values returned by
+            p.
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.GenTokenParser2.SemiSep1``1(LanguageExt.Parsec.Parser{System.ValueTuple{``0,LanguageExt.Parsec.Pos,LanguageExt.Parsec.Pos,System.Int32,System.Int32}})">
+            <summary>
+            Lexeme parser semiSep1(p) parses /one/ or more occurrences of p
+            separated by 'semi'. Returns a list of values returned by p. 
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.GenTokenParser2.CommaSep``1(LanguageExt.Parsec.Parser{System.ValueTuple{``0,LanguageExt.Parsec.Pos,LanguageExt.Parsec.Pos,System.Int32,System.Int32}})">
+            <summary>
+            Lexeme parser commaSep(p) parses /zero/ or more occurrences of
+            p separated by 'comma'. Returns a list of values returned
+            by p. 
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.GenTokenParser2.CommaSep1``1(LanguageExt.Parsec.Parser{System.ValueTuple{``0,LanguageExt.Parsec.Pos,LanguageExt.Parsec.Pos,System.Int32,System.Int32}})">
+            <summary>
+            Lexeme parser commaSep1(p) parses /one/ or more occurrences of
+            p separated by 'comma'. Returns a list of values returned
+            by p. 
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.Language.HaskellStyle">
+            <summary>
+            This is a minimal token definition for Haskell style languages. It
+            defines the style of comments, valid identifiers and case
+            sensitivity.  It does not define any reserved words or operators.
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.Language.JavaStyle">
+            <summary>
+            This is a minimal token definition for Java style languages. It
+            defines the style of comments, valid identifiers and case
+            sensitivity.  It does not define any reserved words.
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.Language.Haskell98Def">
+            <summary>
+            The language definition for the language Haskell98.
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.Internal.choicei``1(LanguageExt.Seq{LanguageExt.Parsec.Parser{``0}})">
+            <summary>
+            Imperative implementation of the choice parser, which in a non-stack 
+            overflow utopia would look similar to this:
+            
+                either(ps[index], choicei(ps, index + 1))
+            
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.Internal.chaini``1(LanguageExt.Seq{LanguageExt.Parsec.Parser{``0}})">
+            <summary>
+            Imperative implementation of chain, which in a non-stack overflow utopia
+            would look similar to this:
+            
+                from x in ps[index]
+                from y in chaini(ps, index + 1)
+                select x.Cons(y);
+            
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.InternalIO.choicei``2(LanguageExt.Seq{LanguageExt.Parsec.Parser{``0,``1}})">
+            <summary>
+            Imperative implementation of the choice parser, which in a non-stack 
+            overflow utopia would look similar to this:
+            
+                either(ps[index], choicei(ps, index + 1))
+            
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.InternalIO.chaini``2(LanguageExt.Seq{LanguageExt.Parsec.Parser{``0,``1}})">
+            <summary>
+            Imperative implementation of chain, which in a non-stack overflow utopia
+            would look similar to this:
+            
+                from x in ps[index]
+                from y in chaini(ps, index + 1)
+                select x.Cons(y);
+            
+            </summary>
+        </member>
+        <member name="T:LanguageExt.Parsec.Parser`1">
+            <summary>
+            Parser delegate type - Parses an input PString and returns a ParserResult
+            </summary>
+            <typeparam name="T">Parsed value result type</typeparam>
+            <param name="input">Input string</param>
+            <returns>Parsed value or error report</returns>
+        </member>
+        <member name="T:LanguageExt.Parsec.Parser`2">
+            <summary>
+            Parser delegate type - Parses an input PString and returns a ParserResult
+            </summary>
+            <typeparam name="I">Input stream element type</typeparam>
+            <typeparam name="O">Parsed value result type</typeparam>
+            <param name="input">Input string</param>
+            <returns>Parsed value or error report</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:LanguageExt.Parsec.ExprIO.buildExpressionParser``2(LanguageExt.Parsec.Operator{``0,``1}[][],LanguageExt.Parsec.Parser{``0,``1})" -->
+        <member name="M:LanguageExt.Parsec.IndentIO.indented``2(System.Int32,LanguageExt.Parsec.Parser{``0,``1})">
+            <summary>
+            Parses only when indented past the level of the reference
+            </summary>
+            <remarks>
+            You must have provided a TokenPos to the initial PString&lt;TOKEN&gt; that gives accurate
+            column and line values for this function to work.
+            </remarks>
+        </member>
+        <member name="M:LanguageExt.Parsec.IndentIO.indented``2(LanguageExt.Parsec.Parser{``0,``1})">
+            <summary>
+            Parses only when indented zero or more characters past the level of the reference
+            </summary>
+            <remarks>
+            You must have provided a TokenPos to the initial PString&lt;TOKEN&gt; that gives accurate
+            column and line values for this function to work.
+            </remarks>
+        </member>
+        <member name="M:LanguageExt.Parsec.IndentIO.indented1``2(LanguageExt.Parsec.Parser{``0,``1})">
+            <summary>
+            Parses only when indented one or more characters past the level of the reference
+            </summary>
+            <remarks>
+            You must have provided a TokenPos to the initial PString&lt;TOKEN&gt; that gives accurate
+            column and line values for this function to work.
+            </remarks>
+        </member>
+        <member name="M:LanguageExt.Parsec.IndentIO.indented2``2(LanguageExt.Parsec.Parser{``0,``1})">
+            <summary>
+            Parses only when indented two or more characters past the level of the reference
+            </summary>
+            <remarks>
+            You must have provided a TokenPos to the initial PString&lt;TOKEN&gt; that gives accurate
+            column and line values for this function to work.
+            </remarks>
+        </member>
+        <member name="M:LanguageExt.Parsec.IndentIO.indented4``2(LanguageExt.Parsec.Parser{``0,``1})">
+            <summary>
+            Parses only when indented four or more characters past the level of the reference
+            </summary>
+            <remarks>
+            You must have provided a TokenPos to the initial PString&lt;TOKEN&gt; that gives accurate
+            column and line values for this function to work.
+            </remarks>
+        </member>
+        <member name="M:LanguageExt.Parsec.IndentIO.parseBlock``2(LanguageExt.Parsec.Parser{``0,``1},System.Int32,System.Int32,LanguageExt.Parsec.PString{``0})">
+            <summary>
+            Sets a new context for the parser p which represents a span of the input tokens
+            </summary>
+            <remarks>
+            The parse fails if it doesn't consume all tokens in the block
+            </remarks>
+        </member>
+        <member name="T:LanguageExt.Parsec.ItemIO">
+            <summary>
+            Commonly used character parsers.
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.ItemIO.item``1(``0)">
+            <summary>
+            item(c) parses a single I
+            </summary>
+            <returns>The parsed character</returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.ItemIO.satisfy``1(System.Func{``0,System.Boolean})">
+            <summary>
+            The parser satisfy(pred) succeeds for any character for which the
+            supplied function pred returns 'True'. 
+            </summary>
+            <returns>
+            The character that is actually parsed.</returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.ItemIO.oneOf``1(LanguageExt.Seq{``0})">
+            <summary>
+            oneOf(str) succeeds if the current character is in the supplied list of 
+            characters str. Returns the parsed character. See also satisfy
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.ItemIO.noneOf``1(LanguageExt.Seq{``0})">
+            <summary>
+            As the dual of 'oneOf', noneOf(str) succeeds if the current
+            character not in the supplied list of characters str. 
+            
+                var consonant = noneOf("aeiou")
+            </summary>
+            <returns>
+            The parsed character.</returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.ItemIO.anyItem``1">
+            <summary>
+            The parser anyChar accepts any kind of character.
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.ItemIO.str``1(LanguageExt.Seq{``0})">
+            <summary>
+            Parse a string
+            </summary>
+        </member>
+        <member name="T:LanguageExt.Parsec.PrimIO">
+            <summary>
+            The primitive parser combinators
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.parse``2(LanguageExt.Parsec.Parser{``0,``1},LanguageExt.Parsec.PString{``0})">
+            <summary>
+            Run the parser p with the input provided
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.parse``2(LanguageExt.Parsec.Parser{``0,``1},LanguageExt.Seq{``0},System.Func{``0,LanguageExt.Parsec.Pos})">
+            <summary>
+            Run the parser p with the input provided
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.lazyp``2(System.Func{LanguageExt.Parsec.Parser{``0,``1}})">
+            <summary>
+            Lazy parser - useful in recursive scenarios.
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.unitp``1">
+            <summary>
+            This parser is useful to put at the top of LINQ expressions, it
+            makes it easier to put breakpoints on the actual first parser
+            in an expression.  It returns unit
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.setState``2(``1)">
+            <summary>
+            Special parser for setting user-state that propagates 
+            through the computation.
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.getState``2">
+            <summary>
+            Special parser for getting user-state that was previously
+            set with setState
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.getPos``1">
+            <summary>
+            Get the current position of the parser in the source as a line
+            and column index (starting at 1 for both)
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.getIndex``1">
+            <summary>
+            Get the current index into the source
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.unexpected``2(System.String)">
+            <summary>
+            The parser unexpected(msg) always fails with an Unexpect error
+            message msg without consuming any input.
+            </summary>
+            <remarks>
+            The parsers 'failure', 'label' and 'unexpected' are the three parsers
+            used to generate error messages.  Of these, only 'label' is commonly
+            used.  For an example of the use of unexpected, see the definition
+            of 'notFollowedBy'.
+            </remarks>
+            <param name="msg">Error message to use when parsed</param>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.failure``2(System.String)">
+            <summary>
+            The parser failure(msg) always fails with a Message error
+            without consuming any input.
+            
+            The parsers 'failure', 'label' and 'unexpected' are the three parsers
+            used to generate error messages.  Of these, only 'label' is commonly
+            used.  For an example of the use of unexpected, see the definition
+            of 'notFollowedBy'.
+            </summary>
+            <param name="msg">Error message to use when parsed</param>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.result``2(``1)">
+            <summary>
+            Always success parser.  Returns the value provided.  
+            This is monad return for the Parser monad
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.zero``2">
+            <summary>
+            Always fails (with an Unknown error) without consuming any input
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.either``2(LanguageExt.Parsec.Parser{``0,``1},LanguageExt.Parsec.Parser{``0,``1})">
+            <summary>
+            This combinator implements choice. The parser either(p,q) first
+            applies p.  If it succeeds, the value of p is returned.  If p
+            fails /without consuming any input/, parser q is tried.  
+            </summary>
+            <remarks>
+            This combinator is the mplus behaviour of the Parser monad.
+            
+            The parser is called /predictive/ since q is only tried when
+            parser p didn't consume any input (i.e.. the look ahead is 1).
+            
+            This non-backtracking behaviour allows for both an efficient
+            implementation of the parser combinators and the generation of good
+            error messages.
+            </remarks>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.choice``2(LanguageExt.Parsec.Parser{``0,``1}[])">
+            <summary>
+            choice(ps) tries to apply the parsers in the list ps in order, until one 
+            of them succeeds. 
+            </summary>
+            <returns>
+            The value of the succeeding parser.
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.choice``2(LanguageExt.Seq{LanguageExt.Parsec.Parser{``0,``1}})">
+            <summary>
+            choice(ps) tries to apply the parsers in the list ps in order, until one 
+            of them succeeds. 
+            </summary>
+            <returns>
+            The value of the succeeding parser.
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.chain``2(LanguageExt.Parsec.Parser{``0,``1}[])">
+            <summary>
+            Runs a sequence of parsers, if any fail then the failure state is
+            returned immediately and subsequence parsers are not run.  
+            </summary>
+            <returns>
+            The result of each parser as an enumerable.
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.chain``2(LanguageExt.Seq{LanguageExt.Parsec.Parser{``0,``1}})">
+            <summary>
+            Runs a sequence of parsers, if any fail then the failure state is
+            returned immediately and subsequence parsers are not run.  
+            </summary>
+            <returns>
+            The result of each parser as an enumerable.
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.attempt``2(LanguageExt.Parsec.Parser{``0,``1})">
+            <summary>
+            The parser attempt(p) behaves like parser p, except that it
+            pretends that it hasn't consumed any input when an error occurs.
+            
+            This combinator is used whenever arbitrary look ahead is needed.
+            Since it pretends that it hasn't consumed any input when p fails,
+            the either combinator will try its second alternative even when the
+            first parser failed while consuming input.
+            
+            See remarks.
+            </summary>
+            <remarks>
+            The attempt combinator can for example be used to distinguish
+            identifiers and reserved words.  Both reserved words and identifiers
+            are a sequence of letters.  Whenever we expect a certain reserved
+            word where we can also expect an identifier we have to use the attempt
+            combinator.  Suppose we write:
+            
+               var expr        = either(letExpr, identifier).label("expression");
+             
+               var letExpr     = from x in str("let")
+                                 ...
+                                 select ...;
+                                 
+               var identifier  = many1(letter);
+            
+             If the user writes "lexical", the parser fails with: unexpected
+             "x", expecting "t" in "let".  Indeed, since the either combinator
+             only tries alternatives when the first alternative hasn't consumed
+             input, the identifier parser is never tried  (because the prefix
+             "le" of the str("let") parser is already consumed). The right behaviour 
+             can be obtained by adding the attempt combinator:
+            
+               var expr        = either(letExpr, identifier).label("expression");
+             
+               var letExpr     = from x in attempt(str("let"))
+                                 ...
+                                 select ...;
+                                 
+               var identifier  = many1(letter);
+             
+             </remarks>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.lookAhead``2(LanguageExt.Parsec.Parser{``0,``1})">
+            <summary>
+            lookAhead(p) parses p without consuming any input.
+            
+            If p fails and consumes some input, so does lookAhead(p). Combine with 
+            'attempt' if this is undesirable.
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.many``2(LanguageExt.Parsec.Parser{``0,``1})">
+            <summary>
+            many(p) applies the parser p zero or more times.
+            </summary>
+            <example>
+                var identifier  = from c in letter
+                                  from cs in many(letterOrDigit)
+                                  select c.Cons(cs)
+            </example>
+            <returns>
+            Enumerable of the returned values of p.
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.many1``2(LanguageExt.Parsec.Parser{``0,``1})">
+            <summary>
+            many1(p) applies the parser p one or more times.
+            </summary>
+            <returns>
+            Enumerable of the returned values of p.
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.skipMany``2(LanguageExt.Parsec.Parser{``0,``1})">
+            <summary>
+            skipMany(p) applies the parser p zero or more times, skipping
+            its result.
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.skipMany1``2(LanguageExt.Parsec.Parser{``0,``1})">
+            <summary>
+            skipMany(p) applies the parser p one or more times, skipping
+            its result.
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.optionOrElse``2(``1,LanguageExt.Parsec.Parser{``0,``1})">
+            <summary>
+            optionOrElse(x, p) tries to apply parser p. If p fails without
+            consuming input, it returns the value x, otherwise the value
+            returned by p.
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.optional``2(LanguageExt.Parsec.Parser{``0,``1})">
+            <summary>
+            optional(p) tries to apply parser p.  If p fails without
+            consuming input, it return 'None', otherwise it returns
+            'Some' the value returned by p.
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.optionalSeq``2(LanguageExt.Parsec.Parser{``0,``1})">
+            <summary>
+            optionalSeq(p) tries to apply parser p.  If p fails without
+            consuming input, it return an empty IEnumerable, otherwise it returns 
+            a one item IEnumerable with the result of p.
+            </summary>
+            <returns>A list of 0 or 1 parsed items</returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.optionalList``2(LanguageExt.Parsec.Parser{``0,``1})">
+            <summary>
+            optionalList(p) tries to apply parser p.  If p fails without
+            consuming input, it return [], otherwise it returns a one 
+            item Lst with the result of p.
+            </summary>
+            <returns>A list of 0 or 1 parsed items</returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.optionalArray``2(LanguageExt.Parsec.Parser{``0,``1})">
+            <summary>
+            optionalArray(p) tries to apply parser p.  If p fails without
+            consuming input, it return [], otherwise it returns a one 
+            item array with the result of p.
+            </summary>
+            <returns>A list of 0 or 1 parsed items</returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.between``4(LanguageExt.Parsec.Parser{``2,``0},LanguageExt.Parsec.Parser{``2,``1},LanguageExt.Parsec.Parser{``2,``3})">
+            <summary>
+            between(open,close,p) parses open, followed by p and close.
+            </summary>
+            <returns>
+            The value returned by p.
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.sepBy1``3(LanguageExt.Parsec.Parser{``1,``2},LanguageExt.Parsec.Parser{``1,``0})">
+            <summary>
+            sepBy1(p,sep) parses one or more occurrences of p, separated
+            by sep. 
+            </summary>
+            <returns>
+            A list of values returned by p.
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.sepBy``3(LanguageExt.Parsec.Parser{``1,``2},LanguageExt.Parsec.Parser{``1,``0})">
+            <summary>
+            sepBy(p,sep) parses zero or more occurrences of p, separated
+            by sep. 
+            </summary>
+            <returns>
+            A list of values returned by p.
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.sepEndBy1``3(LanguageExt.Parsec.Parser{``1,``2},LanguageExt.Parsec.Parser{``1,``0})">
+            <summary>
+            sepEndBy1(p,sep) parses one or more occurrences of p,
+            separated and optionally ended by sep. 
+            </summary>
+            <returns>
+            A list of values returned by p.
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.sepEndBy``3(LanguageExt.Parsec.Parser{``1,``2},LanguageExt.Parsec.Parser{``1,``0})">
+            <summary>
+            sepEndBy(p,sep) parses zero or more occurrences of p,
+            separated and optionally ended by sep. 
+            </summary>
+            <returns>
+            A list of values returned by p.
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.endBy1``3(LanguageExt.Parsec.Parser{``1,``2},LanguageExt.Parsec.Parser{``1,``0})">
+            <summary>
+            endBy1(p,sep) parses one or more occurrences of p, separated
+            and ended by sep.
+            </summary>
+            <returns>
+            A list of values returned by p.
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.endBy``3(LanguageExt.Parsec.Parser{``1,``2},LanguageExt.Parsec.Parser{``1,``0})">
+            <summary>
+            endBy(p,sep) parses zerp or more occurrences of p, separated
+            and ended by sep.
+            </summary>
+            <returns>
+            A list of values returned by p.
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.count``3(System.Int32,LanguageExt.Parsec.Parser{``1,``2})">
+            <summary>
+            count(n,p) parses n occurrences of p. If n is smaller or
+            equal to zero, the parser equals to result([]). 
+            </summary>
+            <returns>
+            A list of values returned by p.
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.chainr``2(LanguageExt.Parsec.Parser{``0,``1},LanguageExt.Parsec.Parser{``0,System.Func{``1,``1,``1}},``1)">
+            <summary>
+            chainr(p,op,x) parses zero or more occurrences of p, separated by op 
+            </summary>
+            <returns>
+            a value obtained by a right associative application of all functions 
+            returned by op to the values returned by p. If there are no occurrences 
+            of p, the value x is returned.</returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.chainl``2(LanguageExt.Parsec.Parser{``0,``1},LanguageExt.Parsec.Parser{``0,System.Func{``1,``1,``1}},``1)">
+            <summary>
+            chainl(p,op,x) parses zero or more occurrences of p, separated by op 
+            </summary>
+            <returns>
+            a value obtained by a left associative application of all functions 
+            returned by op to the values returned by p. If there are no occurrences 
+            of p, the value x is returned.</returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.chainr1``2(LanguageExt.Parsec.Parser{``0,``1},LanguageExt.Parsec.Parser{``0,System.Func{``1,``1,``1}})">
+            <summary>
+            chainr1(p,op) parses one or more occurrences of p, separated by op. 
+            </summary>
+            <returns>
+            A value obtained by a right associative application of all functions 
+            returned by op to the values returned by p
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.chainl1``2(LanguageExt.Parsec.Parser{``0,``1},LanguageExt.Parsec.Parser{``0,System.Func{``1,``1,``1}})">
+            <summary>
+            chainl1(p,op) parses one or more occurrences of p, separated by op. 
+            </summary>
+            <returns>
+            A value obtained by a left associative application of all functions 
+            returned by op to the values returned by p
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.eof``1">
+            <summary>
+            This parser only succeeds at the end of the input. This is not a
+            primitive parser but it is defined using 'notFollowedBy'.
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.notFollowedBy``2(LanguageExt.Parsec.Parser{``0,``1})">
+            <summary>
+            notFollowedBy(p) only succeeds when parser p fails. This parser
+            does not consume any input.This parser can be used to implement the
+            'longest match' rule. 
+            </summary>
+            <example>For example, when recognizing keywords (for
+            example 'let'), we want to make sure that a keyword is not followed
+            by a legal identifier character, in which case the keyword is
+            actually an identifier(for example 'lets'). We can program this
+            behaviour as follows:
+            
+                var keywordLet  = attempt (from x in str("let")
+                                           from _ in notFollowedBy letterOrDigit
+                                           select x);
+                                           
+            </example>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.asString``1(LanguageExt.Parsec.Parser{``0,LanguageExt.Seq{System.Char}})">
+            <summary>
+            Parse a char list and convert into a string
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.asString``2(LanguageExt.Parsec.Parser{``0,LanguageExt.Seq{``1}})">
+            <summary>
+            Parse a T list and convert into a string
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.asString``2(LanguageExt.Parsec.Parser{``0,``1})">
+            <summary>
+            Parse a T list and convert into a string
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.asInteger``1(LanguageExt.Parsec.Parser{``0,LanguageExt.Seq{System.Char}})">
+            <summary>
+            Parse a char list and convert into an integer
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.asInteger``1(LanguageExt.Parsec.Parser{``0,System.String})">
+            <summary>
+            Parse a char list and convert into an integer
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.asInteger``1(LanguageExt.Parsec.Parser{``0,LanguageExt.Seq{System.Char}},System.Int32)">
+            <summary>
+            Parse a char list and convert into an integer
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.asInteger``1(LanguageExt.Parsec.Parser{``0,System.String},System.Int32)">
+            <summary>
+            Parse a char list and convert into an integer
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.asDouble``1(LanguageExt.Parsec.Parser{``0,LanguageExt.Seq{System.Char}})">
+            <summary>
+            Parse a char list and convert into an double precision floating point value
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.asDouble``1(LanguageExt.Parsec.Parser{``0,System.String})">
+            <summary>
+            Parse a char list and convert into an double precision floating point value
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.asFloat``1(LanguageExt.Parsec.Parser{``0,LanguageExt.Seq{System.Char}})">
+            <summary>
+            Parse a char list and convert into an double precision floating point value
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.asFloat``1(LanguageExt.Parsec.Parser{``0,System.String})">
+            <summary>
+            Parse a char list and convert into an double precision floating point value
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.PrimIO.children``2(LanguageExt.Parsec.Parser{``0,LanguageExt.Seq{``0}},LanguageExt.Parsec.Parser{``0,``1})">
+            <summary>
+            Parse child tokens
+            </summary>
+            <param name="children">Parser that gets the child tokens</param>
+            <param name="p">Parser to run on the child tokens</param>
+            <typeparam name="TOKEN">Token type</typeparam>
+            <typeparam name="A">Type of the value to parse</typeparam>
+            <returns>Parser that parses a set of tokens then uses them as a new stream to parse</returns>
+        </member>
+        <member name="T:LanguageExt.Parsec.Char">
+            <summary>
+            Commonly used character parsers.
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.Char.ch(System.Char)">
+            <summary>
+            ch(c) parses a single character c
+            </summary>
+            <returns>The parsed character</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:LanguageExt.Parsec.Char.ch``1(System.Char)" -->
+        <member name="M:LanguageExt.Parsec.Char.satisfy(System.Func{System.Char,System.Boolean})">
+            <summary>
+            The parser satisfy(pred) succeeds for any character for which the
+            supplied function pred returns 'True'. 
+            </summary>
+            <returns>
+            The character that is actually parsed.</returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.Char.oneOf(System.String)">
+            <summary>
+            oneOf(str) succeeds if the current character is in the supplied list of 
+            characters str. Returns the parsed character. See also satisfy
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.Char.oneOf(System.Char[])">
+            <summary>
+            oneOf(str) succeeds if the current character is in the supplied list of 
+            characters str. Returns the parsed character. See also satisfy
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.Char.noneOf(System.String)">
+            <summary>
+            As the dual of 'oneOf', noneOf(str) succeeds if the current
+            character not in the supplied list of characters str. 
+            
+                var consonant = noneOf("aeiou")
+            </summary>
+            <returns>
+            The parsed character.</returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.Char.noneOf(System.Char[])">
+            <summary>
+            As the dual of 'oneOf', noneOf(str) succeeds if the current
+            character not in the supplied list of characters str. 
+            
+                var consonant = noneOf("aeiou")
+            </summary>
+            <returns>
+            The parsed character.</returns>
+        </member>
+        <member name="F:LanguageExt.Parsec.Char.space">
+            <summary>
+            Parses a white space character (any character which satisfies 'System.Char.IsWhiteSpace')
+            Returns the parsed character.
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.Char.spaces">
+            <summary>
+            Skips zero or more white space characters. See also 'skipMany'.
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.Char.control">
+            <summary>
+            Parses a control character
+            Returns the parsed character.
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.Char.tab">
+            <summary>
+            Parses a tab
+            Returns the parsed character.
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.Char.newline">
+            <summary>
+            Equivalent to `LF`. Parses a line-feed newline char (\n). 
+            Returns the parsed character.
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.Char.CR">
+            <summary>
+            Parses a carriage-return char (\r)
+            Returns the parsed character.
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.Char.LF">
+            <summary>
+            Parses a line-feed newline char (\n)
+            Returns the parsed character.
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.Char.CRLF">
+            <summary>
+            Parses a carriage-return then line-feed
+            Returns the new-line.
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.Char.endOfLine">
+            <summary>
+            Parses a CRLF (see 'crlf') or LF (see 'newline') end-of-line.
+            Returns a newline character(\'\\n\').
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.Char.digit">
+            <summary>
+            Parses a digit
+            Returns the parsed character.
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.Char.letter">
+            <summary>
+            Parses a letter
+            Returns the parsed character.
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.Char.alphaNum">
+            <summary>
+            Parses a letter or digit
+            Returns the parsed character.
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.Char.lower">
+            <summary>
+            Parses a lowercase letter
+            Returns the parsed character.
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.Char.upper">
+            <summary>
+            Parses a uppercase letter
+            Returns the parsed character.
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.Char.punctuation">
+            <summary>
+            Parses a punctuation character
+            Returns the parsed character.
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.Char.separator">
+            <summary>
+            Parses a separator character
+            Returns the parsed character.
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.Char.symbolchar">
+            <summary>
+            Parses a symbol character
+            Returns the parsed character.
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.Char.octDigit">
+            <summary>
+            Parses an octal digit (0-7)
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.Char.hexDigit">
+            <summary>
+            Parses a hex digit (0-F | 0-f)
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.Char.anyChar">
+            <summary>
+            The parser anyChar accepts any kind of character.
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.Char.str(System.String)">
+            <summary>
+            Parse a string
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:LanguageExt.Parsec.Char.str``1(System.String)" -->
+        <!-- Badly formed XML comment ignored for member "M:LanguageExt.Parsec.Expr.buildExpressionParser``1(LanguageExt.Parsec.Operator{``0}[][],LanguageExt.Parsec.Parser{``0})" -->
+        <member name="M:LanguageExt.Parsec.Indent.indented``1(System.Int32,LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            Parses only when indented past the level of the reference
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.Indent.indented``1(LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            Parses only when indented zero or more characters past the level of the reference
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.Indent.indented1``1(LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            Parses only when indented one or more characters past the level of the reference
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.Indent.indented2``1(LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            Parses only when indented two or more characters past the level of the reference
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.Indent.indented4``1(LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            Parses only when indented four or more characters past the level of the reference
+            </summary>
+        </member>
+        <member name="T:LanguageExt.Parsec.Prim">
+            <summary>
+            The primitive parser combinators
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.parse``1(LanguageExt.Parsec.Parser{``0},LanguageExt.Parsec.PString)">
+            <summary>
+            Run the parser p with the input provided
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.parse``1(LanguageExt.Parsec.Parser{``0},System.String)">
+            <summary>
+            Run the parser p with the input provided
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.lazyp``1(System.Func{LanguageExt.Parsec.Parser{``0}})">
+            <summary>
+            Lazy parser - useful in recursive scenarios.
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.Prim.unitp">
+            <summary>
+            This parser is useful to put at the top of LINQ expressions, it
+            makes it easier to put breakpoints on the actual first parser
+            in an expression.  It returns unit
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.setState``1(``0)">
+            <summary>
+            Special parser for setting user-state that propagates 
+            through the computation.
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.getState``1">
+            <summary>
+            Special parser for getting user-state that was previously
+            set with setState
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.Prim.getPos">
+            <summary>
+            Get the current position of the parser in the source as a line
+            and column index (starting at 1 for both)
+            </summary>
+        </member>
+        <member name="F:LanguageExt.Parsec.Prim.getIndex">
+            <summary>
+            Get the current index into the source
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.unexpected``1(System.String)">
+            <summary>
+            The parser unexpected(msg) always fails with an Unexpect error
+            message msg without consuming any input.
+            </summary>
+            <remarks>
+            The parsers 'failure', 'label' and 'unexpected' are the three parsers
+            used to generate error messages.  Of these, only 'label' is commonly
+            used.  For an example of the use of unexpected, see the definition
+            of 'Text.Parsec.Combinator.notFollowedBy'.
+            </remarks>
+            <param name="msg">Error message to use when parsed</param>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.failure``1(System.String)">
+            <summary>
+            The parser failure(msg) always fails with a Message error
+            without consuming any input.
+            
+            The parsers 'failure', 'label' and 'unexpected' are the three parsers
+            used to generate error messages.  Of these, only 'label' is commonly
+            used.  For an example of the use of unexpected, see the definition
+            of 'Text.Parsec.Combinator.notFollowedBy'.
+            </summary>
+            <param name="msg">Error message to use when parsed</param>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.result``1(``0)">
+            <summary>
+            Always success parser.  Returns the value provided.  
+            This is monad return for the Parser monad
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.zero``1">
+            <summary>
+            Always fails (with an Unknown error) without consuming any input
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.either``1(LanguageExt.Parsec.Parser{``0},LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            This combinator implements choice. The parser either(p,q) first
+            applies p.  If it succeeds, the value of p is returned.  If p
+            fails /without consuming any input/, parser q is tried.  
+            </summary>
+            <remarks>
+            This combinator is the mplus behaviour of the Parser monad.
+            
+            The parser is called /predictive/ since q is only tried when
+            parser p didn't consume any input (i.e.. the look ahead is 1).
+            
+            This non-backtracking behaviour allows for both an efficient
+            implementation of the parser combinators and the generation of good
+            error messages.
+            </remarks>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.choice``1(LanguageExt.Parsec.Parser{``0}[])">
+            <summary>
+            choice(ps) tries to apply the parsers in the list ps in order, until one 
+            of them succeeds. 
+            </summary>
+            <returns>
+            The value of the succeeding parser.
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.choice``1(LanguageExt.Seq{LanguageExt.Parsec.Parser{``0}})">
+            <summary>
+            choice(ps) tries to apply the parsers in the list ps in order, until one 
+            of them succeeds. 
+            </summary>
+            <returns>
+            The value of the succeeding parser.
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.chain``1(LanguageExt.Parsec.Parser{``0}[])">
+            <summary>
+            Runs a sequence of parsers, if any fail then the failure state is
+            returned immediately and subsequence parsers are not run.  
+            </summary>
+            <returns>
+            The result of each parser as an enumerable.
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.chain``1(LanguageExt.Seq{LanguageExt.Parsec.Parser{``0}})">
+            <summary>
+            Runs a sequence of parsers, if any fail then the failure state is
+            returned immediately and subsequence parsers are not run.  
+            </summary>
+            <returns>
+            The result of each parser as an enumerable.
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.cons``1(LanguageExt.Parsec.Parser{``0},LanguageExt.Parsec.Parser{LanguageExt.Seq{``0}})">
+            <summary>
+            Cons for parser results
+            </summary>
+            <param name="p"></param>
+            <param name="ps"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.flatten``1(LanguageExt.Parsec.Parser{LanguageExt.Seq{LanguageExt.Seq{``0}}})">
+            <summary>
+            Flattens parser result: Seq of Seq of T => Seq of T
+            </summary>
+            <returns>Parser with flattened result sequence</returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.attempt``1(LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            The parser attempt(p) behaves like parser p, except that it
+            pretends that it hasn't consumed any input when an error occurs.
+            
+            This combinator is used whenever arbitrary look ahead is needed.
+            Since it pretends that it hasn't consumed any input when p fails,
+            the either combinator will try its second alternative even when the
+            first parser failed while consuming input.
+            
+            See remarks.
+            </summary>
+            <remarks>
+            The attempt combinator can for example be used to distinguish
+            identifiers and reserved words.  Both reserved words and identifiers
+            are a sequence of letters.  Whenever we expect a certain reserved
+            word where we can also expect an identifier we have to use the attempt
+            combinator.  Suppose we write:
+            
+               var expr        = either(letExpr, identifier).label("expression");
+             
+               var letExpr     = from x in str("let")
+                                 ...
+                                 select ...;
+                                 
+               var identifier  = many1(letter);
+            
+             If the user writes "lexical", the parser fails with: unexpected
+             "x", expecting "t" in "let".  Indeed, since the either combinator
+             only tries alternatives when the first alternative hasn't consumed
+             input, the identifier parser is never tried  (because the prefix
+             "le" of the str("let") parser is already consumed). The right behaviour 
+             can be obtained by adding the attempt combinator:
+            
+               var expr        = either(letExpr, identifier).label("expression");
+             
+               var letExpr     = from x in attempt(str("let"))
+                                 ...
+                                 select ...;
+                                 
+               var identifier  = many1(letter);
+             
+             </remarks>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.lookAhead``1(LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            lookAhead(p) parses p without consuming any input.
+            
+            If p fails and consumes some input, so does lookAhead(p). Combine with 
+            'attempt' if this is undesirable.
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.many``1(LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            many(p) applies the parser p zero or more times.
+            </summary>
+            <example>
+                var identifier  = from c in letter
+                                  from cs in many(letterOrDigit)
+                                  select c.Cons(cs)
+            </example>
+            <returns>
+            Enumerable of the returned values of p.
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.manyn``1(LanguageExt.Parsec.Parser{``0},System.Int32)">
+            <summary>
+            manyn(p, n) applies the parser p n times.
+            </summary>
+            <example>
+                var identifier  = from c in letter
+                                  from cs in manyn(letterOrDigit, 4)
+                                  select c.Cons(cs)
+            </example>
+            <returns>
+            Enumerable of the returned values of p.
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.manyn0``1(LanguageExt.Parsec.Parser{``0},System.Int32)">
+            <summary>
+            manyn0(p) applies the parser p zero or up to a maximum of n times.
+            </summary>
+            <example>
+                var identifier  = from c in letter
+                                  from cs in manyn0(letterOrDigit, 4)
+                                  select c.Cons(cs)
+            </example>
+            <returns>
+            Enumerable of the returned values of p.
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.manyn1``1(LanguageExt.Parsec.Parser{``0},System.Int32)">
+            <summary>
+            manyn1(p) applies the parser p one or up to a maximum of n times.
+            </summary>
+            <returns>
+            Enumerable of the returned values of p.
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.many1``1(LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            many1(p) applies the parser p one or more times.
+            </summary>
+            <returns>
+            Enumerable of the returned values of p.
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.skipMany``1(LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            skipMany(p) applies the parser p zero or more times, skipping
+            its result.
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.skipMany1``1(LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            skipMany(p) applies the parser p one or more times, skipping
+            its result.
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.optionOrElse``1(``0,LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            optionOrElse(x, p) tries to apply parser p. If p fails without
+            consuming input, it returns the value x, otherwise the value
+            returned by p.
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.optional``1(LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            optional(p) tries to apply parser p.  If p fails without
+            consuming input, it return 'None', otherwise it returns
+            'Some' the value returned by p.
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.optionalList``1(LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            optionalList(p) tries to apply parser p.  If p fails without
+            consuming input, it return [], otherwise it returns a one 
+            item Lst with the result of p.
+            </summary>
+            <returns>A list of 0 or 1 parsed items</returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.optionalSeq``1(LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            optionalSeq(p) tries to apply parser p.  If p fails without
+            consuming input, it return an empty IEnumerable, otherwise it returns 
+            a one item IEnumerable with the result of p.
+            </summary>
+            <returns>A list of 0 or 1 parsed items</returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.optionalArray``1(LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            optionalArray(p) tries to apply parser p.  If p fails without
+            consuming input, it return [], otherwise it returns a one 
+            item array with the result of p.
+            </summary>
+            <returns>A list of 0 or 1 parsed items</returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.between``3(LanguageExt.Parsec.Parser{``0},LanguageExt.Parsec.Parser{``1},LanguageExt.Parsec.Parser{``2})">
+            <summary>
+            between(open,close,p) parses open, followed by p and close.
+            </summary>
+            <returns>
+            The value returned by p.
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.sepBy1``2(LanguageExt.Parsec.Parser{``1},LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            sepBy1(p,sep) parses one or more occurrences of p, separated
+            by sep. 
+            </summary>
+            <returns>
+            A list of values returned by p.
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.sepBy``2(LanguageExt.Parsec.Parser{``1},LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            sepBy(p,sep) parses zero or more occurrences of p, separated
+            by sep. 
+            </summary>
+            <returns>
+            A list of values returned by p.
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.sepEndBy1``2(LanguageExt.Parsec.Parser{``1},LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            sepEndBy1(p,sep) parses one or more occurrences of p,
+            separated and optionally ended by sep. 
+            </summary>
+            <returns>
+            A list of values returned by p.
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.sepEndBy``2(LanguageExt.Parsec.Parser{``1},LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            sepEndBy(p,sep) parses zero or more occurrences of p,
+            separated and optionally ended by sep. 
+            </summary>
+            <returns>
+            A list of values returned by p.
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.endBy1``2(LanguageExt.Parsec.Parser{``1},LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            endBy1(p,sep) parses one or more occurrences of p, separated
+            and ended by sep.
+            </summary>
+            <returns>
+            A list of values returned by p.
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.endBy``2(LanguageExt.Parsec.Parser{``1},LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            endBy(p,sep) parses zero or more occurrences of p, separated
+            and ended by sep.
+            </summary>
+            <returns>
+            A list of values returned by p.
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.count``1(System.Int32,LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            count(n,p) parses n occurrences of p. If n is smaller or
+            equal to zero, the parser equals to result([]). 
+            </summary>
+            <returns>
+            A list of values returned by p.
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.chainr``1(LanguageExt.Parsec.Parser{``0},LanguageExt.Parsec.Parser{System.Func{``0,``0,``0}},``0)">
+            <summary>
+            chainr(p,op,x) parses zero or more occurrences of p, separated by op 
+            </summary>
+            <returns>
+            a value obtained by a right associative application of all functions 
+            returned by op to the values returned by p. If there are no occurrences 
+            of p, the value x is returned.</returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.chainl``1(LanguageExt.Parsec.Parser{``0},LanguageExt.Parsec.Parser{System.Func{``0,``0,``0}},``0)">
+            <summary>
+            chainl(p,op,x) parses zero or more occurrences of p, separated by op 
+            </summary>
+            <returns>
+            a value obtained by a left associative application of all functions 
+            returned by op to the values returned by p. If there are no occurrences 
+            of p, the value x is returned.</returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.chainr1``1(LanguageExt.Parsec.Parser{``0},LanguageExt.Parsec.Parser{System.Func{``0,``0,``0}})">
+            <summary>
+            chainr1(p,op) parses one or more occurrences of p, separated by op. 
+            </summary>
+            <returns>
+            A value obtained by a right associative application of all functions 
+            returned by op to the values returned by p
+            </returns>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.chainl1``1(LanguageExt.Parsec.Parser{``0},LanguageExt.Parsec.Parser{System.Func{``0,``0,``0}})">
+            <summary>
+            chainl1(p,op) parses one or more occurrences of p, separated by op. 
+            </summary>
+            <returns>
+            A value obtained by a left associative application of all functions 
+            returned by op to the values returned by p
+            </returns>
+        </member>
+        <member name="F:LanguageExt.Parsec.Prim.eof">
+            <summary>
+            This parser only succeeds at the end of the input. This is not a
+            primitive parser but it is defined using 'notFollowedBy'.
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.notFollowedBy``1(LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            notFollowedBy(p) only succeeds when parser p fails. This parser
+            does not consume any input.This parser can be used to implement the
+            'longest match' rule. 
+            </summary>
+            <example>For example, when recognizing keywords (for
+            example 'let'), we want to make sure that a keyword is not followed
+            by a legal identifier character, in which case the keyword is
+            actually an identifier(for example 'lets'). We can program this
+            behaviour as follows:
+            
+                var keywordLet  = attempt (from x in str("let")
+                                           from _ in notFollowedBy letterOrDigit
+                                           select x);
+                                           
+            </example>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.asString(LanguageExt.Parsec.Parser{LanguageExt.Seq{System.Char}})">
+            <summary>
+            Parse a char list and convert into a string
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.asInteger(LanguageExt.Parsec.Parser{LanguageExt.Seq{System.Char}})">
+            <summary>
+            Parse a char list and convert into an integer
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.asInteger(LanguageExt.Parsec.Parser{LanguageExt.Seq{System.Char}},System.Int32)">
+            <summary>
+            Parse a char list and convert into an integer
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.asDouble(LanguageExt.Parsec.Parser{LanguageExt.Seq{System.Char}})">
+            <summary>
+            Parse a char list and convert into an double precision floating point value
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.Prim.asFloat(LanguageExt.Parsec.Parser{LanguageExt.Seq{System.Char}})">
+            <summary>
+            Parse a char list and convert into an double precision floating point value
+            </summary>
+        </member>
+        <member name="T:LanguageExt.Parsec.Token">
+            <summary>
+            A helper module to parse lexical elements (tokens)
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.Token.makeTokenParser(LanguageExt.Parsec.GenLanguageDef)">
+            <summary>
+             Given a LanguageDef, create a token parser.
+            
+             The expression makeTokenParser(language) creates a 'GenTokenParser'
+             record that contains lexical parsers that are defined using the 
+             definitions in the language record.
+            
+             The use of this function is quite stylised - one imports the
+             appropriate language definition and selects the lexical parsers that
+             are needed from the resulting 'GenTokenParser'.
+            
+               // The parser
+               ...
+             
+               var expr  =  either(
+                                parens(expr),
+                                identifier,
+                                ...
+                            )
+             
+               // The lexer
+               var lexer       = makeTokenParser(langDef)
+                   
+               var parens      = lexer.Parens(p);
+               var braces      = lexer.Braces(p);
+               var identifier  = lexer.Identifier;
+               var reserved    = lexer.Reserved;
+               ...        
+            </summary>
+        </member>
+        <member name="T:LanguageExt.Parsec.Token2">
+            <summary>
+            A helper module to parse lexical elements (tokens)
+            </summary>
+        </member>
+        <member name="M:LanguageExt.Parsec.Token2.makeTokenParser(LanguageExt.Parsec.GenLanguageDef)">
+            <summary>
+             Given a LanguageDef, create a token parser.
+            
+             The expression makeTokenParser(language) creates a 'GenTokenParser'
+             record that contains lexical parsers that are defined using the 
+             definitions in the language record.
+            
+             The use of this function is quite stylised - one imports the
+             appropriate language definition and selects the lexical parsers that
+             are needed from the resulting 'GenTokenParser'.
+            
+               // The parser
+               ...
+             
+               var expr  =  either(
+                                parens(expr),
+                                identifier,
+                                ...
+                            )
+             
+               // The lexer
+               var lexer       = makeTokenParser(langDef)
+                   
+               var parens      = lexer.Parens(p);
+               var braces      = lexer.Braces(p);
+               var identifier  = lexer.Identifier;
+               var reserved    = lexer.Reserved;
+               ...        
+            </summary>
+        </member>
+        <member name="T:LanguageExt.Parsec.Pos">
+            <summary>
+            Represents a parser source position
+            </summary>
+        </member>
+        <member name="T:LanguageExt.Parsec.PString">
+            <summary>
+            Represents the parser source text and the parser's 
+            positional state.
+            </summary>
+        </member>
+        <member name="T:LanguageExt.Parsec.PString`1">
+            <summary>
+            Represents the parser source string and the parser's 
+            positional state.
+            </summary>
+        </member>
+        <member name="P:LanguageExt.ParsecPipes.toParserString">
+            <summary>
+            Pipe a string to a PString
+            </summary>
+        </member>
+        <member name="M:LanguageExt.ParsecPipes.toTokenString``1(System.Func{``0,LanguageExt.Parsec.Pos})">
+            <summary>
+            Pipe tokens to a PString
+            </summary>
+        </member>
+        <member name="M:LanguageExt.ParsecPipes.ToPipe``2(LanguageExt.Parsec.Parser{``1})">
+            <summary>
+            Convert a parser to a pipe that awaits a PString and yields the result of the parse operation
+            If the parser fails then the pipe fails
+            </summary>
+        </member>
+        <member name="M:LanguageExt.ParsecPipes.ToPipe``1(LanguageExt.Parsec.Parser{``0})">
+            <summary>
+            Convert a parser to a pipe that awaits a string and yields the result of the parse operation
+            The value is only forwarded if the parsing succeeds
+            </summary>
+        </member>
+        <member name="M:LanguageExt.ParsecPipes.ToPipe``2(LanguageExt.Parsec.Parser{``0,``1})">
+            <summary>
+            Convert a parser to a pipe that awaits a string and yields the result of the parse operation
+            The value is only forwarded if the parsing succeeds
+            </summary>
+        </member>
+        <member name="M:LanguageExt.ParsecPipes.ToPipe``3(LanguageExt.Parsec.Parser{``1,``2})">
+            <summary>
+            Convert a parser to a pipe that awaits a PString and yields the result of the parse operation
+            If the parser fails then the pipe fails
+            </summary>
+        </member>
+        <member name="M:ParserExtensions.label``1(LanguageExt.Parsec.Parser{``0},System.String)">
+            <summary>
+            A label for the parser
+            </summary>
+            <param name="expected">What was expected</param>
+        </member>
+        <member name="M:ParserIOExtensions.label``2(LanguageExt.Parsec.Parser{``0,``1},System.String)">
+            <summary>
+            A label for the parser
+            </summary>
+            <param name="expected">What was expected</param>
+        </member>
+    </members>
+</doc>
